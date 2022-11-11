@@ -1,0 +1,50 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite --host",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/prismjs": "^1.26.0",
+        "@types/react": "^18.0.20",
+        "@types/react-dom": "^18.0.6",
+        "@typescript-eslint/eslint-plugin": "^5.36.1",
+        "@typescript-eslint/parser": "^5.36.1",
+        "axios": "^0.27",
+        "eslint": "^8.23.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "laravel-vite-plugin": "^0.5.4",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "prettier": "^2.7.1",
+        "ts-loader": "^9.3.1",
+        "typescript": "^4.7.4",
+        "typescript-plugin-css-modules": "^3.4.0",
+        "vite": "^3.0.9"
+    },
+    "dependencies": {
+        "@chakra-ui/icons": "^2.0.10",
+        "@chakra-ui/react": "^2.3.4",
+        "@emotion/react": "^11.10.4",
+        "@emotion/styled": "^11.10.4",
+        "@fontsource/roboto": "^4.5.8",
+        "@inertiajs/inertia": "^0.11.0",
+        "@inertiajs/inertia-react": "^0.8.1",
+        "@inertiajs/progress": "^0.2.7",
+        "@vitejs/plugin-react": "^2.0.1",
+        "classnames": "^2.3.1",
+        "framer-motion": "^6.5.1",
+        "prismjs": "^1.29.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-icons": "^4.4.0",
+        "react-router-dom": "^6.4.0"
+    }
+}

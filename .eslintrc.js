@@ -1,0 +1,58 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  overrides: [],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-filename-extension': [
+      1,
+      {
+        extensions: ['.tsx'],
+      },
+    ],
+    'react/react-in-jsx-scope': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-cycle': 'off',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-duplicates': 'off',
+    'react/function-component-definition': [
+      1,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+    'react/jsx-uses-react': 'off',
+    'react/jsx-uses-vars': 'off',
+    'react/jsx-curly-newline': 'off',
+    'react/jsx-wrap-multilines': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/jsx-indent': 'off',
+    'react/jsx-indent-props': 'off',
+    'react/jsx-closing-bracket-location': 'off',
+    'react/jsx-closing-tag-location': 'off',
+    'react/jsx-curly-spacing': 'off',
+  },
+};

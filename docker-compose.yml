@@ -1,0 +1,75 @@
+version: '2.1'
+
+networks:
+    internal:
+        driver: bridge
+
+volumes:
+    upload-challenge-mysql-data:
+        driver: local
+
+services:
+    upload-challenge-nginx:
+        image: webdevops/php-nginx-dev:8.1-alpine
+        container_name: upload-challenge-nginx
+        networks:
+            - internal
+        working_dir: /var/www/app
+        volumes:
+            - .:/var/www/app
+            - ./docker/development/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - ./docker/development/supervisord.conf:/opt/docker/etc/supervisor.d/supervisord.conf
+        depends_on:
+            upload-challenge-mysql:
+                condition: service_healthy
+        environment:
+            - WEB_DOCUMENT_ROOT=/var/www/app/public
+            - PHP_DISPLAY_ERRORS=0s
+            - PHP_MEMORY_LIMIT=2048M
+            - PHP_MAX_EXECUTION_TIME=300
+            - PHP_POST_MAX_SIZE=500M
+            - PHP_UPLOAD_MAX_FILESIZE=500M
+            - PHP_DEBUGGER="xdebug"
+            - XDEBUG_MODE=debug
+            - XDEBUG_START_WITH_REQUEST=yes
+            - XDEBUG_CLIENT_HOST=host.docker.internal
+            - XDEBUG_CLIENT_PORT=9090
+            - XDEBUG_IDE_KEY=PHPSTORM
+            - XDEBUG_OUTPUT_DIR=/var/www/app/.xdebug
+            - XDEBUG_CONFIG=log_level=0
+        expose:
+            - 9090
+        ports:
+            - "80:80"
+
+    upload-challenge-mysql:
+        image: mysql/mysql-server:8.0
+        container_name: upload-challenge-mysql
+        networks:
+            - internal
+        working_dir: /var/www/app
+        volumes:
+            - upload-challenge-mysql-data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+        healthcheck:
+            test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+            timeout: 3s
+            retries: 5
+        ports:
+            - "3306:3306"
+
+    upload-challenge-node:
+        image: node:16.16.0-alpine
+        container_name: upload-challenge-node
+        networks:
+            - internal
+        working_dir: /var/www/app
+        volumes:
+            - .:/var/www/app
+        command: sh -c "npm install --force && npm run dev --host"
+        ports:
+            - "5173:5173"

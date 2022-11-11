@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "types": ["vite/client"],
+        "target": "esnext",
+        "jsx": "react",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "baseUrl": "./",
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    },
+    "include": ["resources/js/**/*"],
+}
