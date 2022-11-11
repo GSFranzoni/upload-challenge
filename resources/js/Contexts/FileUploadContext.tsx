@@ -17,7 +17,12 @@ type FileUploadContextType = {
   status: FileUploadStatus;
   url: string;
   progress: Progress | null;
+  error: string | null;
 };
+
+const MAX_FILE_SIZE_5_MB = 1024 * 1024 * 5;
+
+const allowedTypes = ['image/png', 'image/jpeg', 'image/gif'];
 
 export const FileUploadContext = createContext<FileUploadContextType>(
   {} as FileUploadContextType
@@ -36,9 +41,19 @@ const FileUploadContextProvider: React.FC<PropsWithChildren> = ({
 
   const [url, setUrl] = useState<string>('');
 
+  const [error, setError] = useState<string>('');
+
   const upload = useCallback(
     (file: File) => {
-      setData('file', file);
+      if (!allowedTypes.includes(file.type)) {
+        setError('File type not allowed');
+        return setStatus('error');
+      }
+      if (file.size > MAX_FILE_SIZE_5_MB) {
+        setError('File size too large');
+        return setStatus('error');
+      }
+      return setData('file', file);
     },
     [setData]
   );
@@ -46,6 +61,7 @@ const FileUploadContextProvider: React.FC<PropsWithChildren> = ({
   const reset = useCallback(() => {
     setStatus('idle');
     setUrl('');
+    setError('');
   }, []);
 
   useEffect(() => {
@@ -69,8 +85,8 @@ const FileUploadContextProvider: React.FC<PropsWithChildren> = ({
   }, [data.file]);
 
   const value = useMemo(
-    () => ({ progress, url, upload, status, reset }),
-    [progress, url, upload, status, reset]
+    () => ({ progress, url, upload, status, reset, error }),
+    [progress, url, upload, status, reset, error]
   );
 
   return (

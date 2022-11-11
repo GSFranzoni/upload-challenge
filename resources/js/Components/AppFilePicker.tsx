@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { Button, Image, Input, Text, VStack } from '@chakra-ui/react';
+import React, { useContext, useEffect, useMemo } from 'react';
+import { Button, Image, Text, VStack } from '@chakra-ui/react';
+import { useDropzone } from 'react-dropzone';
 import UploadImage from '../Assets/image.svg';
 import AppCard from './AppCard';
 import { FileUploadContext } from '../Contexts/FileUploadContext';
@@ -17,6 +18,40 @@ const AppFilePicker: React.FC = () => {
     upload(selected);
   };
 
+  const {
+    getRootProps,
+    getInputProps,
+    isFocused,
+    isDragAccept,
+    isDragReject,
+    acceptedFiles,
+  } = useDropzone({
+    accept: {
+      'image/png': ['.png'],
+      'image/jpeg': ['.jpg', '.jpeg'],
+      'image/gif': ['.gif'],
+    },
+  });
+
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      upload(acceptedFiles.shift() as File);
+    }
+  }, [acceptedFiles]);
+
+  const dropzoneBorderColor = useMemo(() => {
+    if (isDragAccept) {
+      return 'green.500';
+    }
+    if (isDragReject) {
+      return 'red.500';
+    }
+    if (isFocused) {
+      return 'blue.500';
+    }
+    return 'gray.300';
+  }, [isDragAccept, isDragReject, isFocused]);
+
   return (
     <AppCard w="450px" maxW="90%" p={10} borderRadius={8}>
       <VStack gap={3} textAlign="center">
@@ -25,6 +60,7 @@ const AppFilePicker: React.FC = () => {
           File should be Jpeg, Png,...
         </Text>
         <VStack
+          {...getRootProps()}
           experimental_spaceY={5}
           justifyContent="center"
           w="338px"
@@ -32,7 +68,7 @@ const AppFilePicker: React.FC = () => {
           borderStyle="dashed"
           borderWidth={1}
           borderRadius={5}
-          borderColor="blue.300"
+          borderColor={dropzoneBorderColor}
           p={10}
         >
           <Image src={UploadImage} alt="upload" />
@@ -43,12 +79,11 @@ const AppFilePicker: React.FC = () => {
         <Text fontSize="sm" color="gray.400">
           Or
         </Text>
-        <Input
+        <input
+          {...getInputProps()}
           onChange={handleChooseFile}
           ref={inputRef}
           type="file"
-          display="none"
-          accept=".jpg,.jpeg,.png"
         />
         <Button
           size="md"
