@@ -24,11 +24,11 @@ const AppFileUploaded: React.FC = () => {
   const toast = useToast();
 
   return (
-    <AppCard w="450px" maxW="90%" p={5} pt={10} borderRadius={8}>
-      <VStack gap={3} textAlign="center">
+    <AppCard w="450px" maxW="90%" p={5} py={8} borderRadius={8}>
+      <VStack gap={3} textAlign="center" px={2}>
         <CheckCircleIcon boxSize={12} color="green.500" />
         <Text fontSize="xl">Uploaded Successfully!</Text>
-        <Image width="90%" src={url} alt="uploaded" />
+        <Image width="100%" src={url} alt="uploaded" borderRadius={12} />
         <InputGroup>
           <Input readOnly value={url} fontSize={12} paddingRight="5rem" />
           <InputRightElement width="5rem">
