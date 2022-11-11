@@ -1,24 +1,12 @@
-import React, { useEffect } from 'react';
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Button,
-  Container,
-  Flex,
-  Text,
-  useToast,
-} from '@chakra-ui/react';
-import { useForm } from '@inertiajs/inertia-react';
-import AppTextField from '../Components/AppTextField';
-import AppCard from '../Components/AppCard';
+import React, { useContext } from 'react';
+import { Container, Fade, Flex } from '@chakra-ui/react';
+import AppFilePicker from '../Components/AppFilePicker';
+import AppUploading from '../Components/AppUploading';
+import { FileUploadContext } from '../Contexts/FileUploadContext';
+import AppFileUploaded from '../Components/AppFileUploaded';
 
-type HomeProps = {
-  message: string;
-};
-
-const Home: React.FC<HomeProps> = ({ message }) => {
-
+const Home: React.FC = () => {
+  const { status } = useContext(FileUploadContext);
   return (
     <Container
       as={Flex}
@@ -26,9 +14,15 @@ const Home: React.FC<HomeProps> = ({ message }) => {
       justifyContent="center"
       height="100%"
     >
-      <AppCard>
-        {message}
-      </AppCard>
+      <Fade in={status === 'idle'}>
+        {status === 'idle' && <AppFilePicker />}
+      </Fade>
+      <Fade in={status === 'uploading'}>
+        {status === 'uploading' && <AppUploading />}
+      </Fade>
+      <Fade in={status === 'success'}>
+        {status === 'success' && <AppFileUploaded />}
+      </Fade>
     </Container>
   );
 };
