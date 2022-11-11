@@ -4,6 +4,7 @@ import AppFilePicker from '../Components/AppFilePicker';
 import AppUploading from '../Components/AppUploading';
 import { FileUploadContext } from '../Contexts/FileUploadContext';
 import AppFileUploaded from '../Components/AppFileUploaded';
+import AppFileUploadFailed from '../Components/AppFileUploadFailed';
 
 const Upload: React.FC = () => {
   const { status } = useContext(FileUploadContext);
@@ -22,6 +23,9 @@ const Upload: React.FC = () => {
       </Fade>
       <Fade in={status === 'success'}>
         {status === 'success' && <AppFileUploaded />}
+      </Fade>
+      <Fade in={status === 'error'}>
+        {status === 'error' && <AppFileUploadFailed />}
       </Fade>
     </Container>
   );
