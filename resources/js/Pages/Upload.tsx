@@ -5,7 +5,7 @@ import AppUploading from '../Components/AppUploading';
 import { FileUploadContext } from '../Contexts/FileUploadContext';
 import AppFileUploaded from '../Components/AppFileUploaded';
 
-const Home: React.FC = () => {
+const Upload: React.FC = () => {
   const { status } = useContext(FileUploadContext);
   return (
     <Container
@@ -27,4 +27,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Upload;

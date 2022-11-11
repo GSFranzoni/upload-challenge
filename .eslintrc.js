@@ -54,5 +54,6 @@ module.exports = {
     'react/jsx-closing-bracket-location': 'off',
     'react/jsx-closing-tag-location': 'off',
     'react/jsx-curly-spacing': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
 };
