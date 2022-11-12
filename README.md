@@ -1,7 +1,7 @@
 # Image Uploader
 
 ### Challenge
-Simple image uploader made with Laravel, React and Inertia JS.
+Simple image uploader made with **Laravel**, **Amazon S3**, **React** and **Inertia JS**.
 
 ### Requirements
 - I can drag and drop an image to upload it
