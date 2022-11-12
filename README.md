@@ -22,6 +22,8 @@ You need to create a `.env` file in the root of the project. You can use the `.e
 cp .env.example .env
 ```
 
+Make sure you fill the `AWS_*` variables with your AWS credentials.
+
 After that, you can run the following command to start the project:
 ```
 make init
