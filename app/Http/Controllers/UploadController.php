@@ -6,15 +6,12 @@ use App\Http\Requests\UploadRequest;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Controller;
 use Inertia\Response;
-use Ramsey\Uuid\Uuid;
 
 class UploadController extends Controller
 {
     public function store(UploadRequest $request): Response
     {
-        $filename = Uuid::uuid1()->toString() . '.' . $request->file('file')?->extension();
-
-        $path = $request->file('file')?->storeAs('files', $filename, [
+        $path = $request->file('file')?->store('files', [
             'disk' => 's3',
             'expires' => now()->addMinutes(5),
         ]);
