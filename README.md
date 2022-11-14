@@ -31,4 +31,4 @@ make init
 It will install all dependencies and start the project. You can access the project on [http://localhost](http://localhost).
 
 ### Demo
-You can see a demo of the project [here](https://gsfranzoni-image-uploader.herokuapp.com/upload).
+You can see a demo of the project [here](https://uploader.gsfranzoni.me/upload).
