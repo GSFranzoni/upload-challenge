@@ -6,7 +6,7 @@ import { FileUploadContext } from '../Contexts/FileUploadContext';
 const AppUploading: React.FC = () => {
   const { progress } = useContext(FileUploadContext);
   return (
-    <AppCard w="450px" maxW="90%" p={10} borderRadius={8}>
+    <AppCard w="420px" p={10} borderRadius={8} shadow={['none', 'lg']}>
       <Text fontSize="md" fontWeight={500}>
         Uploading...
       </Text>

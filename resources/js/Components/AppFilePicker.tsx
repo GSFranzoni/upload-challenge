@@ -53,7 +53,7 @@ const AppFilePicker: React.FC = () => {
   }, [isDragAccept, isDragReject, isFocused]);
 
   return (
-    <AppCard w="450px" maxW="90%" p={10} borderRadius={8}>
+    <AppCard w="420px" p={10} borderRadius={8} shadow={['none', 'lg']}>
       <VStack gap={3} textAlign="center">
         <Text fontSize="2xl">Upload your image</Text>
         <Text fontSize="xs" fontWeight={600} color="gray.400">

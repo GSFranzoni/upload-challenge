@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import {
   Button,
+  CircularProgress,
   Flex,
   Image,
   Input,
@@ -24,11 +25,18 @@ const AppFileUploaded: React.FC = () => {
   const toast = useToast();
 
   return (
-    <AppCard w="450px" maxW="90%" p={5} py={8} borderRadius={8}>
+    <AppCard w="420px" p={5} py={8} borderRadius={8} shadow={['none', 'lg']}>
       <VStack gap={3} textAlign="center" px={2}>
         <CheckCircleIcon boxSize={12} color="green.500" />
         <Text fontSize="xl">Uploaded Successfully!</Text>
-        <Image width="100%" src={url} alt="uploaded" borderRadius={12} />
+        <Image
+          width="100%"
+          minHeight="250px"
+          src={url}
+          alt="uploaded"
+          fallback={<CircularProgress isIndeterminate />}
+          borderRadius={12}
+        />
         <InputGroup>
           <Input readOnly value={url} fontSize={12} paddingRight="5rem" />
           <InputRightElement width="5rem">

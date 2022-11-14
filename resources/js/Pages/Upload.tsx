@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Container, Fade, Flex } from '@chakra-ui/react';
+import { ScaleFade, Flex, Box } from '@chakra-ui/react';
 import AppFilePicker from '../Components/AppFilePicker';
 import AppUploading from '../Components/AppUploading';
 import { FileUploadContext } from '../Contexts/FileUploadContext';
@@ -9,25 +9,20 @@ import AppFileUploadFailed from '../Components/AppFileUploadFailed';
 const Upload: React.FC = () => {
   const { status } = useContext(FileUploadContext);
   return (
-    <Container
-      as={Flex}
-      alignItems="center"
-      justifyContent="center"
-      height="100%"
-    >
-      <Fade in={status === 'idle'}>
+    <Flex h="full" alignItems="center" justifyContent="center">
+      <ScaleFade initialScale={0.9} in={status === 'idle'}>
         {status === 'idle' && <AppFilePicker />}
-      </Fade>
-      <Fade in={status === 'uploading'}>
+      </ScaleFade>
+      <ScaleFade initialScale={0.9} in={status === 'uploading'}>
         {status === 'uploading' && <AppUploading />}
-      </Fade>
-      <Fade in={status === 'success'}>
+      </ScaleFade>
+      <ScaleFade initialScale={0.9} in={status === 'success'}>
         {status === 'success' && <AppFileUploaded />}
-      </Fade>
-      <Fade in={status === 'error'}>
+      </ScaleFade>
+      <ScaleFade initialScale={0.9} in={status === 'error'}>
         {status === 'error' && <AppFileUploadFailed />}
-      </Fade>
-    </Container>
+      </ScaleFade>
+    </Flex>
   );
 };
 

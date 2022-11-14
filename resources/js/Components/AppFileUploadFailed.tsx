@@ -8,7 +8,7 @@ const AppFileUploadFailed: React.FC = () => {
   const { reset, error } = useContext(FileUploadContext);
 
   return (
-    <AppCard w="350px" maxW="90%" p={5} py={8} borderRadius={8}>
+    <AppCard w="350px" p={5} py={8} borderRadius={8} shadow={['none', 'lg']}>
       <VStack gap={3} textAlign="center">
         <WarningIcon boxSize={12} color="red.500" />
         <Text fontSize="xl">Upload Failed!</Text>
